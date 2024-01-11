@@ -1,3 +1,4 @@
-Top-Down/*.pyc
 Top-Down/*.txt
 Top-Down/.vscode/*
+
+__pycache__

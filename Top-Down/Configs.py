@@ -26,55 +26,55 @@ import os
 
 p = os.getcwd()
 
-#PLAYER CONFIGS
+# PLAYER CONFIGS
 SPEED_PLAYER = 150
 LIFE_PLAYER = 1000
 AMMO_PLAYER = 25
 MULTI_SHOTS = True
 SPEED_SHOT = 400
 SHIELD_TIME = 10
-SPRITE_PLAYER = p+'/images/sprites/dude/dudeE0.png'
-SPRITE_PLAYER_SH = p+'/images/sprites/dude/dude_shE0.png'
-SPRITE_SHOT = p+'/images/sprites/shot.png'
-SPRITE_AMMO = p+'/images/sprites/ammo.png'
+SPRITE_PLAYER = p + "/images/sprites/dude/dudeE0.png"
+SPRITE_PLAYER_SH = p + "/images/sprites/dude/dude_shE0.png"
+SPRITE_SHOT = p + "/images/sprites/shot.png"
+SPRITE_AMMO = p + "/images/sprites/ammo.png"
 
-#ENEMIES CONFIGS
+# ENEMIES CONFIGS
 SPEED_ENEMY = 100
 LIFE_ENEMY = 600
 MUTATION_RATE = 0.01
 SHOW_FOV = False
-SPRITE_ENEMY = p+'/images/sprites/enemy.png'
-SPRITE_ENEMY2 = p+'/images/sprites/enemy2.png'
-SPRITE_ENEMY3 = p+'/images/sprites/enemy3.png'
-SPRITE_ENEMY4 = p+'/images/sprites/enemy4.png'
-SPRITE_ENEMY5 = p+'/images/sprites/enemy5.png'
-SPRITE_ENEMYC = p+'/images/sprites/enemyc.png'
-SPRITE_ENEMY_SH = p+'/images/sprites/enemy_sh.png'
+SPRITE_ENEMY = p + "/images/sprites/enemy.png"
+SPRITE_ENEMY2 = p + "/images/sprites/enemy2.png"
+SPRITE_ENEMY3 = p + "/images/sprites/enemy3.png"
+SPRITE_ENEMY4 = p + "/images/sprites/enemy4.png"
+SPRITE_ENEMY5 = p + "/images/sprites/enemy5.png"
+SPRITE_ENEMYC = p + "/images/sprites/enemyc.png"
+SPRITE_ENEMY_SH = p + "/images/sprites/enemy_sh.png"
 
-#MAP CONFIGS
-ICONE = p+'/images/sprites/icon.png'
-BACKGROUND = p+'/images/bg/dungeon2.png'
-SPRITE_SHIELD = p+'/images/sprites/shield.png'
-SPRITE_HEALTH = p+'/images/sprites/health.png'
-SPRITE_POINTS = p+'/images/sprites/points.png'
-SPRITE_ARROW = p+'/images/sprites/arrow.png'
-BACK_MUSIC = p+'/audio/stayingAlive.mp3'
-SHOOT_SOUND = p+'/audio/shoot.wav'
-POWERUP_SOUND = p+'/audio/powerup.wav'
-DEAD_SOUND = p+'/audio/dead.wav'
-RELOAD_SOUND = p+'/audio/reload.wav'
-SHIELD_SOUND = p+'/audio/shield.wav'
+# MAP CONFIGS
+ICONE = p + "/images/sprites/icon.png"
+BACKGROUND = p + "/images/bg/dungeon2.png"
+SPRITE_SHIELD = p + "/images/sprites/shield.png"
+SPRITE_HEALTH = p + "/images/sprites/health.png"
+SPRITE_POINTS = p + "/images/sprites/points.png"
+SPRITE_ARROW = p + "/images/sprites/arrow.png"
+BACK_MUSIC = p + "/audio/stayingAlive.mp3"
+SHOOT_SOUND = p + "/audio/shoot.wav"
+POWERUP_SOUND = p + "/audio/powerup.wav"
+DEAD_SOUND = p + "/audio/dead.wav"
+RELOAD_SOUND = p + "/audio/reload.wav"
+SHIELD_SOUND = p + "/audio/shield.wav"
 FPS = 60
 MULT_TAM = 1.5
 BONUS_AMMO = 25
 BONUS_HEALTH = 500
 BONUS_POINTS = 500
-ALTURA = 480          #Colision
-LARGURA = 940         #Colision
-ALTURA2 = 540         #Screen
-LARGURA2 = 940        #Screen
+ALTURA = 480  # Colision
+LARGURA = 940  # Colision
+ALTURA2 = 540  # Screen
+LARGURA2 = 940  # Screen
 
-#COLORS CONFIGS
+# COLORS CONFIGS
 BRANCO = (255, 255, 255)
 PRETO = (0, 0, 0)
 VERMELHO = (255, 0, 0)

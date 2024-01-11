@@ -22,79 +22,82 @@
     along with As Aventuras de Dude no Mundo Top-Down.
     If not, see <http://www.gnu.org/licenses/>.
 """
-import pygame, os
-from pygame.locals import *
-from Configs import *
+import pygame
+import Configs as Cfg
 from random import randint
 
-#Ammo object
+
+# Ammo object
 class ammobox(pygame.sprite.Sprite):
-    def __init__(self,spriteA):
+    def __init__(self, spriteA):
         pygame.sprite.Sprite.__init__(self)
         self.image = spriteA
-        self.sizeX=pygame.Surface.get_width(self.image)
-        self.sizeY=pygame.Surface.get_height(self.image)
-        self.X = randint(LARGURA/4,LARGURA-LARGURA/4)
-        self.Y = randint(self.sizeY,ALTURA-self.sizeY)
+        self.sizeX = pygame.Surface.get_width(self.image)
+        self.sizeY = pygame.Surface.get_height(self.image)
+        self.X = randint(Cfg.LARGURA / 4, Cfg.LARGURA - Cfg.LARGURA / 4)
+        self.Y = randint(self.sizeY, Cfg.ALTURA - self.sizeY)
         self.rect = self.image.get_rect()
         self.rect.topleft = (self.X, self.Y)
-        self.bonusAmmo = BONUS_AMMO
+        self.bonusAmmo = Cfg.BONUS_AMMO
 
     def changePos(self):
-        self.X = randint(self.sizeX,LARGURA-44)
-        self.Y = randint(self.sizeY,ALTURA-44)
+        self.X = randint(self.sizeX, Cfg.LARGURA - 44)
+        self.Y = randint(self.sizeY, Cfg.ALTURA - 44)
         self.rect.topleft = (self.X, self.Y)
 
-#Health object
+
+# Health object
 class Health(pygame.sprite.Sprite):
-    def __init__(self,spriteH):
+    def __init__(self, spriteH):
         pygame.sprite.Sprite.__init__(self)
         self.image = spriteH
-        self.sizeX=pygame.Surface.get_width(self.image)
-        self.sizeY=pygame.Surface.get_height(self.image)
-        self.X = randint(LARGURA/4,LARGURA-LARGURA/4)
-        self.Y = randint(self.sizeY,ALTURA-self.sizeY)
+        self.sizeX = pygame.Surface.get_width(self.image)
+        self.sizeY = pygame.Surface.get_height(self.image)
+        self.X = randint(Cfg.LARGURA / 4, Cfg.LARGURA - Cfg.LARGURA / 4)
+        self.Y = randint(self.sizeY, Cfg.ALTURA - self.sizeY)
         self.rect = self.image.get_rect()
         self.rect.topleft = (self.X, self.Y)
-        self.bonusHP = BONUS_HEALTH
+        self.bonusHP = Cfg.BONUS_HEALTH
 
     def changePos(self):
-        self.X = randint(self.sizeX,LARGURA-44)
-        self.Y = randint(self.sizeY,ALTURA-44)
+        self.X = randint(self.sizeX, Cfg.LARGURA - 44)
+        self.Y = randint(self.sizeY, Cfg.ALTURA - 44)
         self.rect.topleft = (self.X, self.Y)
 
-#Points object
+
+# Points object
 class Points(pygame.sprite.Sprite):
-    def __init__(self,spritePTS):
+    def __init__(self, spritePTS):
         pygame.sprite.Sprite.__init__(self)
         self.image = spritePTS
-        self.sizeX=pygame.Surface.get_width(self.image)
-        self.sizeY=pygame.Surface.get_height(self.image)
-        self.X = randint(LARGURA/4,LARGURA-LARGURA/4)
-        self.Y = randint(self.sizeY,ALTURA-self.sizeY)
+        self.sizeX = pygame.Surface.get_width(self.image)
+        self.sizeY = pygame.Surface.get_height(self.image)
+        self.X = randint(Cfg.LARGURA / 4, Cfg.LARGURA - Cfg.LARGURA / 4)
+        self.Y = randint(self.sizeY, Cfg.ALTURA - self.sizeY)
         self.rect = self.image.get_rect()
         self.rect.topleft = (self.X, self.Y)
-        self.bonusPts = BONUS_POINTS
+        self.bonusPts = Cfg.BONUS_POINTS
 
     def changePos(self):
-        self.X = randint(self.sizeX,LARGURA-44)
-        self.Y = randint(self.sizeY,ALTURA-44)
+        self.X = randint(self.sizeX, Cfg.LARGURA - 44)
+        self.Y = randint(self.sizeY, Cfg.ALTURA - 44)
         self.rect.topleft = (self.X, self.Y)
 
-#Shield object
+
+# Shield object
 class Shield(pygame.sprite.Sprite):
-    def __init__(self,spriteSh):
+    def __init__(self, spriteSh):
         pygame.sprite.Sprite.__init__(self)
         self.image = spriteSh
-        self.sizeX=pygame.Surface.get_width(self.image)
-        self.sizeY=pygame.Surface.get_height(self.image)
-        self.X = randint(LARGURA/4,LARGURA-LARGURA/4)
-        self.Y = randint(self.sizeY,ALTURA-self.sizeY)
+        self.sizeX = pygame.Surface.get_width(self.image)
+        self.sizeY = pygame.Surface.get_height(self.image)
+        self.X = randint(Cfg.LARGURA / 4, Cfg.LARGURA - Cfg.LARGURA / 4)
+        self.Y = randint(self.sizeY, Cfg.ALTURA - self.sizeY)
         self.rect = self.image.get_rect()
         self.rect.topleft = (self.X, self.Y)
-        self.shieldTime = SHIELD_TIME
+        self.shieldTime = Cfg.SHIELD_TIME
 
     def changePos(self):
-        self.X = randint(self.sizeX,LARGURA-44)
-        self.Y = randint(self.sizeY,ALTURA-44)
+        self.X = randint(self.sizeX, Cfg.LARGURA - 44)
+        self.Y = randint(self.sizeY, Cfg.ALTURA - 44)
         self.rect.topleft = (self.X, self.Y)

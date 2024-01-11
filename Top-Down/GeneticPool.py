@@ -22,95 +22,125 @@
     along with As Aventuras de Dude no Mundo Top-Down.
     If not, see <http://www.gnu.org/licenses/>.
 """
-import pygame, os
-from pygame.locals import *
-from random import randint,uniform
-from Configs import *
+from random import randint, uniform
+import Configs as Cfg
 
-#Object for managing the genetic algorithm methods
-class geneticPool():
-    def __init__(self,enemiesData):
+
+# Object for managing the genetic algorithm methods
+class geneticPool:
+    def __init__(self, enemiesData):
         self.enemiesData = enemiesData
         self.tam = len(self.enemiesData)
         self.enemiesDataSelecteds = []
         self.somaFit = 0
         self.somaProbs = 0
-        self.mutationChance = MUTATION_RATE
-        
+        self.mutationChance = Cfg.MUTATION_RATE
+
         self.selecao()
         self.crossover()
         self.mutacao()
 
-    #Sorts enemies by fitness score
+    # Sorts enemies by fitness score
     def sortFitness(self):
-        self.enemiesData=sorted(self.enemiesData, key=lambda fit: fit[1])
+        self.enemiesData = sorted(self.enemiesData, key=lambda fit: fit[1])
 
-    #Selection (Roullete method)
+    # Selection (Roullete method)
     def selecao(self):
         self.sortFitness()
         self.somaFitness()
-        y=0
-        while y<2:
-            pick    = uniform(0, 1)
+        y = 0
+        while y < 2:
+            pick = uniform(0, 1)
             current = 0
-            x=0
-            while x < self.tam and y<2:
-                current += float(self.enemiesData[x][1])/self.somaFit
-                if current > pick and y<2:
+            x = 0
+            while x < self.tam and y < 2:
+                current += float(self.enemiesData[x][1]) / self.somaFit
+                if current > pick and y < 2:
                     self.enemiesDataSelecteds.append(self.enemiesData[x])
                     self.enemiesData.pop(x)
                     self.tam = len(self.enemiesData)
-                    y+=1
-                x+=1
-            
-    #Crossover (Single point crossover)
+                    y += 1
+                x += 1
+
+    # Crossover (Single point crossover)
     def crossover(self):
-        #Adds the best
-        novoRandom = [[randint(1,10),randint(70,130),randint(0,2),randint(0,2),randint(0,2),randint(0,1),round(uniform(0.5, 2),2),round(uniform(0.5, 2),2)],0,0]
+        # Adds the best
+        novoRandom = [
+            [
+                randint(1, 10),
+                randint(70, 130),
+                randint(0, 2),
+                randint(0, 2),
+                randint(0, 2),
+                randint(0, 1),
+                round(uniform(0.5, 2), 2),
+                round(uniform(0.5, 2), 2),
+            ],
+            0,
+            0,
+        ]
         self.enemiesData[2] = novoRandom
         self.enemiesData.append(self.enemiesDataSelecteds[1])
         self.enemiesData.append(self.enemiesDataSelecteds[0])
-        
-        #Applies single point crossover
-        self.enemiesData[0][0]=[self.enemiesData[3][0][0],self.enemiesData[3][0][1],self.enemiesData[3][0][2],self.enemiesData[3][0][3],self.enemiesData[4][0][4],self.enemiesData[4][0][5],self.enemiesData[4][0][6],self.enemiesData[4][0][7]]
-        self.enemiesData[1][0]=[self.enemiesData[4][0][0],self.enemiesData[4][0][1],self.enemiesData[4][0][2],self.enemiesData[4][0][3],self.enemiesData[3][0][4],self.enemiesData[3][0][5],self.enemiesData[3][0][6],self.enemiesData[3][0][7]]
 
-    #Mutation
+        # Applies single point crossover
+        self.enemiesData[0][0] = [
+            self.enemiesData[3][0][0],
+            self.enemiesData[3][0][1],
+            self.enemiesData[3][0][2],
+            self.enemiesData[3][0][3],
+            self.enemiesData[4][0][4],
+            self.enemiesData[4][0][5],
+            self.enemiesData[4][0][6],
+            self.enemiesData[4][0][7],
+        ]
+        self.enemiesData[1][0] = [
+            self.enemiesData[4][0][0],
+            self.enemiesData[4][0][1],
+            self.enemiesData[4][0][2],
+            self.enemiesData[4][0][3],
+            self.enemiesData[3][0][4],
+            self.enemiesData[3][0][5],
+            self.enemiesData[3][0][6],
+            self.enemiesData[3][0][7],
+        ]
+
+    # Mutation
     def mutacao(self):
-        x=0
-        while x<2:
-            y=0
-            while y<8:
+        x = 0
+        while x < 2:
+            y = 0
+            while y < 8:
                 valorRandom = uniform(0, 1)
-                if valorRandom<=self.mutationChance:
-                    if y==0:
-                        self.enemiesData[x][0][y]=randint(1,10)
-                    elif y==1:
-                        self.enemiesData[x][0][y]=randint(70,130)
-                    elif y==2:
-                        self.enemiesData[x][0][y]=randint(0,2)
-                    elif y==3:
-                        self.enemiesData[x][0][y]=randint(0,2)
-                    elif y==4:
-                        self.enemiesData[x][0][y]=randint(0,2)
-                    elif y==5:
-                        self.enemiesData[x][0][y]=randint(0,1)
-                    elif y==6:
-                        self.enemiesData[x][0][y]=round(uniform(0.5, 2),2)
-                    elif y==7:
-                        self.enemiesData[x][0][y]=round(uniform(0.5, 2),2)
-                y+=1
-            x+=1
-            
-    #Sums all fitness scores
-    def somaFitness(self):
-        x=0
-        while x<self.tam:
-            self.somaFit += self.enemiesData[x][1]
-            x+=1
-        self.somaFit=float(self.somaFit)
+                if valorRandom <= self.mutationChance:
+                    if y == 0:
+                        self.enemiesData[x][0][y] = randint(1, 10)
+                    elif y == 1:
+                        self.enemiesData[x][0][y] = randint(70, 130)
+                    elif y == 2:
+                        self.enemiesData[x][0][y] = randint(0, 2)
+                    elif y == 3:
+                        self.enemiesData[x][0][y] = randint(0, 2)
+                    elif y == 4:
+                        self.enemiesData[x][0][y] = randint(0, 2)
+                    elif y == 5:
+                        self.enemiesData[x][0][y] = randint(0, 1)
+                    elif y == 6:
+                        self.enemiesData[x][0][y] = round(uniform(0.5, 2), 2)
+                    elif y == 7:
+                        self.enemiesData[x][0][y] = round(uniform(0.5, 2), 2)
+                y += 1
+            x += 1
 
-    #Reset
+    # Sums all fitness scores
+    def somaFitness(self):
+        x = 0
+        while x < self.tam:
+            self.somaFit += self.enemiesData[x][1]
+            x += 1
+        self.somaFit = float(self.somaFit)
+
+    # Reset
     def reset(self):
         self.enemiesData = []
         self.tam = len(self.enemiesData)

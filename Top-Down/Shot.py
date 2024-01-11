@@ -22,49 +22,48 @@
     along with As Aventuras de Dude no Mundo Top-Down.
     If not, see <http://www.gnu.org/licenses/>.
 """
-import pygame, os
-from pygame.locals import *
-from Configs import *
-from random import randint
+import pygame
+import Configs as Cfg
 
-#Shot object
+
+# Shot object
 class shot(pygame.sprite.Sprite):
-    def __init__(self,spriteS,posx,posy,x,y):
+    def __init__(self, spriteS, posx, posy, x, y):
         pygame.sprite.Sprite.__init__(self)
         self.image = spriteS
-        self.X = posx+12
-        self.Y = posy+12
+        self.X = posx + 12
+        self.Y = posy + 12
         self.rect = self.image.get_rect()
         self.rect.topleft = (self.X, self.Y)
-        self.speed = SPEED_SHOT
+        self.speed = Cfg.SPEED_SHOT
         self.xis = x
         self.yps = y
         self.cantShoot = True
 
-    #Main update function
-    def update(self,screen,time_passed):
-        time_passed_seconds = time_passed/1000.0
+    # Main update function
+    def update(self, screen, time_passed):
+        time_passed_seconds = time_passed / 1000.0
         distance_moved = time_passed_seconds * self.speed
 
         if self.cantShoot:
-            self.X +=self.xis*distance_moved
-            self.Y +=self.yps*distance_moved
+            self.X += self.xis * distance_moved
+            self.Y += self.yps * distance_moved
             self.rect.topleft = (self.X, self.Y)
-            screen.blit(self.image, (self.X,self.Y))
+            screen.blit(self.image, (self.X, self.Y))
 
-        if self.X>LARGURA-32:
+        if self.X > Cfg.LARGURA - 32:
             self.cantShoot = False
             self.X = 1000
             self.Y = 1000
-        elif self.X<30:
+        elif self.X < 30:
             self.cantShoot = False
             self.X = 1000
             self.Y = 1000
-        if self.Y>ALTURA-32:
+        if self.Y > Cfg.ALTURA - 32:
             self.cantShoot = False
             self.X = 1000
             self.Y = 1000
-        elif self.Y<30:
+        elif self.Y < 30:
             self.cantShoot = False
             self.X = 1000
             self.Y = 1000
